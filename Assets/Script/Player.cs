@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private CharacterController character;
     private Vector3 direction;
@@ -35,8 +35,16 @@ public class NewBehaviourScript : MonoBehaviour
         character.Move(direction * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.GameOver();
+        }    
+    }
 
 
-    
-    
+
+
+
 }
