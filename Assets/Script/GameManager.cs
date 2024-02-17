@@ -13,17 +13,17 @@ public class GameManager : MonoBehaviour
 
     // Game Speed
     public float initialGameSpeed = 5f;
-    public float gameSpeedIncrease = 0.1f;
-    public float gameSpeed { get; private set; }
-
+    public float gameSpeedIncrease;
+    public float gameSpeed;
+    //{ get; private set; }
     // Spawner Parameter
     public float player_gravity;
     public float player_jumpForce;
 
     // Difficulty
     public int difficulty = 1; // 1++
-    public float difficultyFactor = 1f;
-    private float difficultyPeriod = 500f; // every x score will increase difficulty
+    public float difficultyFactor = 0f;
+    private float difficultyPeriod = 20f; // every x score will increase difficulty
 
     // UI
     public TextMeshProUGUI gameOverText;
@@ -86,13 +86,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Initialize Game Data
-        score = 0f;
-        difficulty = 1;
-        difficultyFactor = 1f;
-        gameSpeed = initialGameSpeed;
-
-        player_gravity = player.gravity;
-        player_jumpForce = player.jumpForce;
+        InitializeData();
+        
         enabled = true;
 
         // Activate UI & GameObjects
@@ -147,10 +142,23 @@ public class GameManager : MonoBehaviour
         // every "difficultyPeriod" will increase 1 difficulty level
         difficulty = Mathf.FloorToInt(score / difficultyPeriod) + 1;
         if(prev != difficulty) {
-            difficultyFactor -= 0.1f;
+            difficultyFactor += 0.1f;
         }
-        if(difficultyFactor < 0) { 
-            difficultyFactor = 0;
+        //Debug.Log(prev);
+        if(difficultyFactor > 10 ) { 
+            difficultyFactor = 10;
         }
+    }
+
+    private void InitializeData()
+    {
+        score = 0f;
+        difficulty = 1;
+        difficultyFactor = 0f;
+        gameSpeed = initialGameSpeed;
+        gameSpeedIncrease = 0.5f;
+
+        player_gravity = player.gravity;
+        player_jumpForce = player.jumpForce;
     }
 }
