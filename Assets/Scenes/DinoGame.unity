@@ -681,6 +681,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialGameSpeed: 5
   gameSpeedIncrease: 0.1
+  difficulty: 1
+  difficultyFactor: 1
   gameOverText: {fileID: 1935659708}
   scoreText: {fileID: 298341283}
   highScoreText: {fileID: 636837540}
@@ -1145,8 +1147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3432ea8ea219b444a897c02ef7630706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 17.89
-  jumpForce: 6.43
+  gravity: 10
+  jumpForce: 10
 --- !u!114 &1535226884
 MonoBehaviour:
   m_ObjectHideFlags: 0

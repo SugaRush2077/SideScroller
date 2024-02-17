@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
 
     // Game Speed
     public float initialGameSpeed = 5f;
-    public float gameSpeedIncrease = 0.1f;
+    public float gameSpeedIncrease = 0.0f;
     public float gameSpeed { get; private set; }
 
     // Difficulty
-    public int difficulty = 1;
+    public int difficulty = 1; // 1~5
+    public float difficultyFactor = 1f;
+    private float difficultyPeriod = 500f; // every x score will increase difficulty
 
     // UI
     public TextMeshProUGUI gameOverText;
@@ -65,15 +67,24 @@ public class GameManager : MonoBehaviour
     // Create New Game
     public void NewGame()
     {
+        // Clear Obstacle For New Game
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
-
-        // Clear GameObjects For New Game
         foreach(var obstacle in obstacles)
         {
             Destroy(obstacle.gameObject);
         }
+
+        // Clear Enemy For New Game
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+
         // Initialize Game Data
         score = 0f;
+        difficulty = 1;
+        difficultyFactor = 1f;
         gameSpeed = initialGameSpeed;
         enabled = true;
 
@@ -108,6 +119,7 @@ public class GameManager : MonoBehaviour
         // increase score
         score += gameSpeed * Time.deltaTime;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");
+        increaseDifficulty();
     }
 
     private void UpdateHighScore()
@@ -120,5 +132,12 @@ public class GameManager : MonoBehaviour
         }
 
         highScoreText.text = Mathf.FloorToInt(hiscore).ToString("D5");
+    }
+
+    private void increaseDifficulty()
+    {
+        // every "difficultyPeriod" will increase 1 difficulty level
+        difficulty = Mathf.FloorToInt(score / difficultyPeriod) + 1;
+        difficultyFactor = 1 + difficulty / 10;
     }
 }
