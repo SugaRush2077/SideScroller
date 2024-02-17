@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     public float gravity = 9.81f * 2f;
     public float jumpForce = 8f;
+
     private void Awake()
     {
         character = GetComponent<CharacterController>();
