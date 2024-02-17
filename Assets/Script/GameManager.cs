@@ -13,11 +13,15 @@ public class GameManager : MonoBehaviour
 
     // Game Speed
     public float initialGameSpeed = 5f;
-    public float gameSpeedIncrease = 0.0f;
+    public float gameSpeedIncrease = 0.1f;
     public float gameSpeed { get; private set; }
 
+    // Spawner Parameter
+    public float player_gravity;
+    public float player_jumpForce;
+
     // Difficulty
-    public int difficulty = 1; // 1~5
+    public int difficulty = 1; // 1++
     public float difficultyFactor = 1f;
     private float difficultyPeriod = 500f; // every x score will increase difficulty
 
@@ -86,6 +90,9 @@ public class GameManager : MonoBehaviour
         difficulty = 1;
         difficultyFactor = 1f;
         gameSpeed = initialGameSpeed;
+
+        player_gravity = player.gravity;
+        player_jumpForce = player.jumpForce;
         enabled = true;
 
         // Activate UI & GameObjects
@@ -136,8 +143,14 @@ public class GameManager : MonoBehaviour
 
     private void increaseDifficulty()
     {
+        int prev = difficulty;
         // every "difficultyPeriod" will increase 1 difficulty level
         difficulty = Mathf.FloorToInt(score / difficultyPeriod) + 1;
-        difficultyFactor = 1 + difficulty / 10;
+        if(prev != difficulty) {
+            difficultyFactor -= 0.1f;
+        }
+        if(difficultyFactor < 0) { 
+            difficultyFactor = 0;
+        }
     }
 }

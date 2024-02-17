@@ -288,19 +288,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - prefab: {fileID: 17901901786865824, guid: d1e8fb50318ce8140aee2ffbc201e4c6, type: 3}
-    spawnProbability: 0.2
+    spawnChance: 0.2
   - prefab: {fileID: 4554476775822402285, guid: 6f2fe0b8b6ccf3c438b510adbc5a6ca6, type: 3}
-    spawnProbability: 0.18
+    spawnChance: 0.18
   - prefab: {fileID: 7815022637488539508, guid: a7c46fd4ca1cf4943bb3a06f1cb66472, type: 3}
-    spawnProbability: 0.16
+    spawnChance: 0.16
   - prefab: {fileID: 5401210007513130844, guid: 25bf268c90664fa48b4017d633ba67d7, type: 3}
-    spawnProbability: 0.14
+    spawnChance: 0.14
   - prefab: {fileID: 5929745363145227204, guid: ba2d36ddfd2b2194d9302683d9f13ce4, type: 3}
-    spawnProbability: 0.12
+    spawnChance: 0.12
   - prefab: {fileID: 7450229887387634215, guid: b3830e3f599686546a9fb234fefbc772, type: 3}
-    spawnProbability: 0.1
+    spawnChance: 0.1
   - prefab: {fileID: 4916590561700312167, guid: f046bd2f2021f584b915c6f0e55482db, type: 3}
-    spawnProbability: 0.05
+    spawnChance: 0.05
   minSpawnRate: 1
   maxSpawnRate: 2
 --- !u!4 &333443534
@@ -681,6 +681,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialGameSpeed: 5
   gameSpeedIncrease: 0.1
+  player_gravity: 0
+  player_jumpForce: 0
   difficulty: 1
   difficultyFactor: 1
   gameOverText: {fileID: 1935659708}
@@ -1147,7 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3432ea8ea219b444a897c02ef7630706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 10
+  gravity: 20
   jumpForce: 10
 --- !u!114 &1535226884
 MonoBehaviour:
