@@ -302,7 +302,7 @@ MonoBehaviour:
   - prefab: {fileID: 4916590561700312167, guid: f046bd2f2021f584b915c6f0e55482db, type: 3}
     spawnChance: 0.05
   minSpawnRate: 1
-  maxSpawnRate: 2
+  maxSpawnRate: 1.5
 --- !u!4 &333443534
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialGameSpeed: 5
-  gameSpeedIncrease: 0.1
+  gameSpeedIncrease: 0
+  gameSpeed: 0
   player_gravity: 0
   player_jumpForce: 0
   difficulty: 1

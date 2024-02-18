@@ -20,7 +20,8 @@ public class Spawner : MonoBehaviour
     private int jumpDistance;
     private float jumpForce;
     private float gravity;
-    private float factor;
+    private float difficultyFactor;
+    private float spawnConstant = 0.5f;
 
     // Calculate the distance of player can jump
     private void calculateDistance()
@@ -30,20 +31,24 @@ public class Spawner : MonoBehaviour
         // angle = 180 / (pi * radian)
         jumpForce = GameManager.Instance.player_jumpForce;
         gravity = GameManager.Instance.player_gravity;
-        factor = GameManager.Instance.difficultyFactor;
+        difficultyFactor = GameManager.Instance.difficultyFactor;
         float gs = GameManager.Instance.gameSpeed;
-        Debug.Log(jumpForce);
-        float angle = Mathf.Tan(jumpForce / gs); // Radians
-        // distance = V0 * 2 * Sin (2 * angle / gravity)
+        float angle = Mathf.Atan(jumpForce / gs); // Radians
+        float angle_in_degree = angle * 180 / Mathf.PI;
+        // distance = v0 * v0 * Mathf.Sin(2 * angle)) / gravity
         float v0 = Mathf.Sqrt(jumpForce * jumpForce + gravity * gravity);
-        //Debug.Log(v0);
-        Debug.Log(factor);
-        Debug.Log(gs);
-        Debug.Log(angle);
-        jumpDistance = Mathf.CeilToInt(v0 * 2 * Mathf.Sin(2 * angle / gravity)) + 1; // plus 1 for boundary
+        
+        jumpDistance = Mathf.CeilToInt((v0 * v0 * Mathf.Sin(2 * angle)) / gravity); // plus 1 for boundary
         spawnPeriod = jumpDistance / gs;
-        //Debug.Log(jumpDistance);
-        Invoke(nameof(calculateDistance), 1);
+        /*
+        Debug.Log(jumpForce);
+        Debug.Log(gs);
+        Debug.Log(angle_in_degree);
+        Debug.Log(v0);
+        Debug.Log(jumpDistance);
+        Debug.Log(spawnPeriod);
+        */
+        Invoke(nameof(calculateDistance), 0.5f);
     }
     private void Start()
     {
@@ -53,9 +58,8 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-
         //Invoke(nameof(Spawn), spawnPeriod + 2);
-        Invoke(nameof(calculateDistance), 1);
+        Invoke(nameof(calculateDistance), 0.1f);
         Invoke(nameof(Spawn), Random.Range(3, spawnPeriod));
         //Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + 1 + GameManager.Instance.difficultyFactor));
         //Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
@@ -83,7 +87,10 @@ public class Spawner : MonoBehaviour
 
             spawnProbability -= obj.spawnChance;
         }
-        Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + factor));
+        Debug.Log(difficultyFactor);
+        float minRange = spawnPeriod - difficultyFactor;
+        float maxRange = spawnPeriod + spawnConstant;
+        Invoke(nameof(Spawn), Random.Range(minRange, maxRange));
         //Invoke(nameof(Spawn), spawnPeriod + 2);
         //Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
         //Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + 1 + GameManager.Instance.difficultyFactor));
