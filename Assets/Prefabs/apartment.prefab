@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6026586161722413847}
   - component: {fileID: 6186729640026560693}
   - component: {fileID: 8479250308812508146}
+  - component: {fileID: -2158730205569531938}
   m_Layer: 0
   m_Name: apartment
   m_TagString: Untagged
@@ -97,3 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4c9c595407f0e42871942952774be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2158730205569531938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837702234615669553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5a9934da5706740b0c46155e3d7751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subspawn_floor: {fileID: 8663456367270127812, guid: a2bd89a43828d584fbb8e8d66241e66e, type: 3}
+  subspawn_roof1: {fileID: 7890643633323084406, guid: da8e229bdf64b654dae7c6c6498e532d, type: 3}
+  subspawn_roof2: {fileID: 5251659272238371022, guid: aa3fddd5459ced541bc6b16841a6e11b, type: 3}
+  threshold: 0.7

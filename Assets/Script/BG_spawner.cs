@@ -16,14 +16,15 @@ public class BG_spawner : MonoBehaviour
 
     // Spawn time in second
     // Depend on distance & speed & time
-    public float minSpawnRate = 0.5f;
-    public float maxSpawnRate = 1f;
+    public float minSpawnRate = 0.1f;
+    public float maxSpawnRate = 0.4f;
     //private float spawnPeriod = 1f;
     
       
     private void OnEnable()
     {
-        //Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
+        Spawn();
+        //Invoke(nameof(Spawn), Random.Range(0, 0.3f));
     }
 
 

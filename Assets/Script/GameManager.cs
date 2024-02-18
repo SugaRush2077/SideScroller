@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     // Player & Spawner
     private Player player;
     private Spawner spawner;
+    private BG_spawner bg;
 
     // Score Management
     private float score;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         spawner = FindAnyObjectByType<Spawner>();
+        bg = FindAnyObjectByType<BG_spawner>();
         NewGame();
     }
 
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
         // Activate UI & GameObjects
         player.gameObject.SetActive(true);
         spawner.gameObject.SetActive(true);
+        bg.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
+        bg.gameObject .SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
         

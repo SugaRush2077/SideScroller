@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2143205915119024196}
   - component: {fileID: 2127667272412743712}
   - component: {fileID: 7540054449348550554}
+  - component: {fileID: -7512168519042056316}
   m_Layer: 0
   m_Name: apartment_floor
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8663456367270127812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.41, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,3 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4c9c595407f0e42871942952774be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7512168519042056316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663456367270127812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: badb0d1070667b4449b9e646b857c0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subspawn_roof1: {fileID: 7890643633323084406, guid: da8e229bdf64b654dae7c6c6498e532d, type: 3}
+  subspawn_roof2: {fileID: 5251659272238371022, guid: aa3fddd5459ced541bc6b16841a6e11b, type: 3}
+  threshold: 0.5
