@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        approachingSpeed = baseSpeed * GameManager.Instance.difficultyFactor;
+        approachingSpeed = baseSpeed;
+        //approachingSpeed = baseSpeed * GameManager.Instance.difficultyFactor;
         transform.position += Vector3.left * GameManager.Instance.gameSpeed * Time.deltaTime * approachingSpeed;
 
         if (transform.position.x < leftEdge)
