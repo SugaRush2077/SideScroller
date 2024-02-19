@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
 
-    private float up = 2.0f;
-    private float down = -2.0f;
+    public float up = 2.0f;
+    public float down = -2.0f;
 
     private void Start()
     {

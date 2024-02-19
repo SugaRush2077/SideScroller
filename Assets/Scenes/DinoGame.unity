@@ -288,11 +288,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - prefab: {fileID: 6778211712295692751, guid: c123fce07e3480c4cb4cbeb833a5b61f, type: 3}
-    spawnChance: 0.4
-  - prefab: {fileID: 9103241831194905514, guid: 97b6d91e2400f79489657c244bda80d9, type: 3}
-    spawnChance: 0.3
-  - prefab: {fileID: 8951876513129159116, guid: 6f19b9881e7f6d346a24bc27b62bc4be, type: 3}
     spawnChance: 0.2
+  - prefab: {fileID: 9103241831194905514, guid: 97b6d91e2400f79489657c244bda80d9, type: 3}
+    spawnChance: 0.2
+  - prefab: {fileID: 1913143818943612465, guid: 16afded68fc2b58458a6b6a4208e1ac9, type: 3}
+    spawnChance: 0.2
+  - prefab: {fileID: 8951876513129159116, guid: 6f19b9881e7f6d346a24bc27b62bc4be, type: 3}
+    spawnChance: 0.15
+  - prefab: {fileID: 3765894130994079989, guid: 99176c873f9f8a84c85118e60164a6d3, type: 3}
+    spawnChance: 0.15
+  - prefab: {fileID: 408783706975236186, guid: 89fac290312a8e04bb34e21611d9f333, type: 3}
+    spawnChance: 0.15
   minSpawnRate: 1
   maxSpawnRate: 1.5
 --- !u!4 &333443534
@@ -567,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - prefab: {fileID: 7837702234615669553, guid: f4f77e7a343e30c43b8dd70f7253c01b, type: 3}
-    spawnChance: 0.5
+    spawnChance: 0.7
   - prefab: {fileID: 6302742636146254208, guid: ba60c49626449444b918bf49409aa1e7, type: 3}
     spawnChance: 0.2
   minSpawnRate: 0.5
