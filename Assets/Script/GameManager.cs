@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Difficulty
     public int difficulty = 1; // 1++
     public float difficultyFactor = 0f;
-    private float difficultyPeriod = 20f; // every x score will increase difficulty
+    private float difficultyPeriod = 100f; // every x score will increase difficulty
 
     // UI
     public TextMeshProUGUI gameOverText;
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     // Player & Spawner
     private Player player;
-    private Spawner spawner;
+    private Spawner obstacle_spawner;
     private BG_spawner bg;
 
     // Score Management
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
-        spawner = FindAnyObjectByType<Spawner>();
+        obstacle_spawner = FindAnyObjectByType<Spawner>();
         bg = FindAnyObjectByType<BG_spawner>();
         NewGame();
     }
@@ -87,6 +87,13 @@ public class GameManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
 
+        // Clear Enemy For New Game
+        Background[] backgroundArray = FindObjectsOfType<Background>();
+        foreach (var Background in backgroundArray)
+        {
+            Destroy(Background.gameObject);
+        }
+
         // Initialize Game Data
         InitializeData();
         
@@ -94,8 +101,9 @@ public class GameManager : MonoBehaviour
 
         // Activate UI & GameObjects
         player.gameObject.SetActive(true);
-        spawner.gameObject.SetActive(true);
+        obstacle_spawner.gameObject.SetActive(true);
         bg.gameObject.SetActive(true);
+
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         
@@ -109,8 +117,9 @@ public class GameManager : MonoBehaviour
         enabled = false;
 
         player.gameObject.SetActive(false);
-        spawner.gameObject.SetActive(false);
+        obstacle_spawner.gameObject.SetActive(false);
         bg.gameObject .SetActive(false);
+
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
         

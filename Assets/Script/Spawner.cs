@@ -3,25 +3,35 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [System.Serializable]
-    public struct SpawnableObject
+    public struct SpawnableObstacle
     {
         public GameObject prefab;
         [Range(0f, 1f)]
         public float spawnChance;
     }
+    public struct SpawnableEnemy
+    {
+        public GameObject prefab;
+        [Range(0f, 1f)]
+        public float spawnChance;
+    }
+    public float threshold = 0.5f;
 
-    public SpawnableObject[] objects;
-
+    public SpawnableObstacle[] Obstacle_list;
+    public SpawnableObstacle[] Enemy_list;
+    public bool DifficultyOn = false;
     // Spawn time in second
     // Depend on distance & speed & time
     public float minSpawnRate = 1f;
     public float maxSpawnRate = 1.5f;
+    public float spawnConstant = 0.5f;
+
     private float spawnPeriod = 1f;
     private int jumpDistance;
     private float jumpForce;
     private float gravity;
     private float difficultyFactor;
-    private float spawnConstant = 0.5f;
+    
 
     // Calculate the distance of player can jump
     private void calculateDistance()
@@ -50,50 +60,62 @@ public class Spawner : MonoBehaviour
         */
         Invoke(nameof(calculateDistance), 0.5f);
     }
-    private void Start()
-    {
-        
-        
-    }
-
+    
     private void OnEnable()
     {
-        //Invoke(nameof(Spawn), spawnPeriod + 2);
+        
         Invoke(nameof(calculateDistance), 0.1f);
         Invoke(nameof(Spawn), Random.Range(3, spawnPeriod));
-        //Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + 1 + GameManager.Instance.difficultyFactor));
-        //Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
+        
     }
-
-    
-
+     
     private void OnDisable()
     {
         CancelInvoke();
     }
+
     private void Spawn()
     {
-        //calculateDistance();
+        float obstacle_or_enemy = Random.value;
         float spawnProbability = Random.value;
-
-        foreach (var obj in objects)
+        if(obstacle_or_enemy < threshold) // Obstacle
         {
-            if (spawnProbability < obj.spawnChance)
+            foreach (var obj in Obstacle_list)
             {
-                GameObject obstacle = Instantiate(obj.prefab);
-                obstacle.transform.position += transform.position;
-                break;
-            }
+                if (spawnProbability < obj.spawnChance)
+                {
+                    GameObject obstacle = Instantiate(obj.prefab);
+                    obstacle.transform.position += transform.position;
+                    break;
+                }
 
-            spawnProbability -= obj.spawnChance;
+                spawnProbability -= obj.spawnChance;
+            }
         }
-        Debug.Log(difficultyFactor);
-        float minRange = spawnPeriod - difficultyFactor;
-        float maxRange = spawnPeriod + spawnConstant;
-        Invoke(nameof(Spawn), Random.Range(minRange, maxRange));
-        //Invoke(nameof(Spawn), spawnPeriod + 2);
-        //Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
-        //Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + 1 + GameManager.Instance.difficultyFactor));
-        //Debug.Log(spawnPeriod);
+        else // Enemy
+        {
+            foreach (var obj in Enemy_list)
+            {
+                if (spawnProbability < obj.spawnChance)
+                {
+                    GameObject enemy = Instantiate(obj.prefab);
+                    enemy.transform.position += transform.position;
+                    break;
+                }
+
+                spawnProbability -= obj.spawnChance;
+            }
+        }
+
+        if (DifficultyOn)
+        {
+            float minRange = spawnPeriod - difficultyFactor;
+            float maxRange = spawnPeriod + spawnConstant;
+            Invoke(nameof(Spawn), Random.Range(minRange, maxRange));
+        }
+        else
+        {
+            Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
+        }
     }
 }

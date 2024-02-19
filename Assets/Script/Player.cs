@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
         }
 
         character.Move(direction * Time.deltaTime);
+        //character.
     }
 
     private void OnTriggerEnter(Collider other)
