@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private Player player;
     private Spawner obstacle_spawner;
     private BG_spawner bg;
+    private FG_spawner fg;
 
     // Score Management
     private float score;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         obstacle_spawner = FindAnyObjectByType<Spawner>();
         bg = FindAnyObjectByType<BG_spawner>();
+        fg = FindAnyObjectByType<FG_spawner>();
         NewGame();
     }
 
@@ -87,11 +89,16 @@ public class GameManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
 
-        // Clear Enemy For New Game
+        // Clear background & foreground For New Game
         Background[] backgroundArray = FindObjectsOfType<Background>();
         foreach (var Background in backgroundArray)
         {
             Destroy(Background.gameObject);
+        }
+        Foreground[] foregroundArray = FindObjectsOfType<Foreground>();
+        foreach (var Foreground in foregroundArray)
+        {
+            Destroy(Foreground.gameObject);
         }
 
         // Initialize Game Data
@@ -103,6 +110,7 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
         obstacle_spawner.gameObject.SetActive(true);
         bg.gameObject.SetActive(true);
+        fg.gameObject.SetActive(true);
 
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
@@ -119,6 +127,7 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(false);
         obstacle_spawner.gameObject.SetActive(false);
         bg.gameObject .SetActive(false);
+        fg.gameObject .SetActive(false);
 
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
