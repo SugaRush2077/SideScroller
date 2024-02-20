@@ -576,14 +576,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
+  - prefab: {fileID: 888324095098173205, guid: 5bbc17ddc16445a4c8c040c44d02d48e, type: 3}
+    spawnChance: 0.5
   - prefab: {fileID: 7837702234615669553, guid: f4f77e7a343e30c43b8dd70f7253c01b, type: 3}
-    spawnChance: 0.4
-  - prefab: {fileID: 1537285139319824455, guid: 633c13f743cdc044aaa6217b4c9edbb4, type: 3}
     spawnChance: 0.3
-  - prefab: {fileID: 7249154502679015950, guid: 8626b28b93d997c45884c90298717b1a, type: 3}
+  - prefab: {fileID: 1537285139319824455, guid: 633c13f743cdc044aaa6217b4c9edbb4, type: 3}
     spawnChance: 0.2
+  - prefab: {fileID: 7249154502679015950, guid: 8626b28b93d997c45884c90298717b1a, type: 3}
+    spawnChance: 0
   - prefab: {fileID: 6302742636146254208, guid: ba60c49626449444b918bf49409aa1e7, type: 3}
-    spawnChance: 0.1
+    spawnChance: 0
   minSpawnRate: 0.4
   maxSpawnRate: 0.6
 --- !u!4 &652120980
@@ -1168,7 +1170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ca85e9b484fb2cc4a92c00672f23be6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

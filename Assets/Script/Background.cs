@@ -5,6 +5,8 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     private float leftEdge;
+    public float baseSpeed = 1f;
+    
 
     private void Start()
     {
@@ -12,7 +14,7 @@ public class Background : MonoBehaviour
     }
     private void Update()
     {
-        transform.position += Vector3.left * GameManager.Instance.gameSpeed * Time.deltaTime;
+        transform.position += Vector3.left * GameManager.Instance.gameSpeed * Time.deltaTime * baseSpeed;
 
         if (transform.position.x < leftEdge)
         {
