@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 
     // Game Speed
     public float initialGameSpeed = 5f;
-    public float gameSpeedIncrease;
+    public float speedIncrease = 0.5f;
+    private float gameSpeedIncrease;
     public float gameSpeed;
     //{ get; private set; }
     // Spawner Parameter
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Difficulty
     public int difficulty = 1; // 1++
     public float difficultyFactor = 0f;
-    private float difficultyPeriod = 100f; // every x score will increase difficulty
+    private float difficultyPeriod = 500f; // every x score will increase difficulty
 
     // UI
     public TextMeshProUGUI gameOverText;
@@ -39,6 +40,18 @@ public class GameManager : MonoBehaviour
 
     // Score Management
     private float score;
+
+    private void InitializeData()
+    {
+        score = 0f;
+        difficulty = 1;
+        difficultyFactor = 0f;
+        gameSpeed = initialGameSpeed;
+        gameSpeedIncrease = speedIncrease;
+
+        player_gravity = player.gravity;
+        player_jumpForce = player.jumpForce;
+    }
 
     // when enabled (before start)
     private void Awake()
@@ -172,15 +185,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void InitializeData()
-    {
-        score = 0f;
-        difficulty = 1;
-        difficultyFactor = 0f;
-        gameSpeed = initialGameSpeed;
-        gameSpeedIncrease = 0.5f;
-
-        player_gravity = player.gravity;
-        player_jumpForce = player.jumpForce;
-    }
+    
 }
