@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class BG_spawner : MonoBehaviour
@@ -13,26 +14,43 @@ public class BG_spawner : MonoBehaviour
     }
 
     public SpawnableObject[] objects;
-
+    //private int count = 0;
     // Spawn time in second
     // Depend on distance & speed & time
-    public float minSpawnRate = 0.1f;
-    public float maxSpawnRate = 0.1f;
+    public int SpawnNumPerSec = 3;
+    public float minSpawnRate = 0.5f;
+    public float maxSpawnRate = 1.2f;
     //private float spawnPeriod = 1f;
     
       
     private void OnEnable()
     {
-        Spawn();
-        //Invoke(nameof(Spawn), Random.Range(0, 0.3f));
+        Invoke(nameof(Spawn), 1f);
+        //Spawn();
+        //InvokeRepeating(nameof(Spawn), 1, 0.7f);
+
+        
     }
-
-
 
     private void OnDisable()
     {
         CancelInvoke();
     }
+
+    private void Update()
+    {
+        /*
+        if(count > (1 / Time.deltaTime) / 10)
+        {
+            Spawn();
+            count = 0;
+        }
+        
+        count++;*/
+        
+    }
+
+
     private void Spawn()
     {
         float spawnProbability = Random.value;
@@ -48,7 +66,14 @@ public class BG_spawner : MonoBehaviour
 
             spawnProbability -= obj.spawnChance;
         }
-        Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
-        
+        //float min = Time.deltaTime * minSpawnRate;
+        //float max = Time.deltaTime * maxSpawnRate;
+
+        float rate = 1f / (SpawnNumPerSec + GameManager.Instance.difficulty);
+        //float rate = 1f / 4;
+        //Debug.Log(rate);
+        float spawnPeriod = Random.Range(rate, Mathf.Min(rate + 1, rate * 10));
+        //Debug.Log(spawnPeriod);
+        Invoke(nameof(Spawn), spawnPeriod);
     }
 }

@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
     private void OnEnable()
     {
         
-        Invoke(nameof(calculateDistance), 0.1f);
+        //Invoke(nameof(calculateDistance), 0.1f);
         Invoke(nameof(Spawn), Random.Range(3, spawnPeriod));
         
     }
@@ -72,6 +72,11 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke();
+    }
+
+    private void Update()
+    {
+        calculateDistance();
     }
 
     private void Spawn()
@@ -111,7 +116,8 @@ public class Spawner : MonoBehaviour
         {
             float minRange = spawnPeriod - difficultyFactor;
             float maxRange = spawnPeriod + spawnConstant;
-            Invoke(nameof(Spawn), Random.Range(minRange, maxRange));
+            //Invoke(nameof(Spawn), Random.Range(minRange, maxRange));
+            Invoke(nameof(Spawn), Random.Range(spawnPeriod, spawnPeriod + spawnConstant));
         }
         else
         {
