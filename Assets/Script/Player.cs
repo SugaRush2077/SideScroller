@@ -35,6 +35,12 @@ public class Player : MonoBehaviour
 
         character.Move(direction * Time.deltaTime);
         //character.
+        
+    }
+
+    private void crouch()
+    {
+        //character.height
     }
 
     private void OnTriggerEnter(Collider other)

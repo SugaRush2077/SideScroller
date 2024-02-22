@@ -157,6 +157,12 @@ public class GameManager : MonoBehaviour
         score += gameSpeed * Time.deltaTime;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");
         increaseDifficulty();
+        
+        // esc to quit the game
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void UpdateHighScore()
