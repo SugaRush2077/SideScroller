@@ -81,19 +81,22 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if(isCheat) 
+            UnityEngine.Color newColor;
+            if (isCheat) 
             {
                 // Cheat Off
-                GameManager.Instance.ScoreTitle.color = new Vector4(83, 83, 83, 255);
-                
+                newColor = new UnityEngine.Color(0, 0, 0);
+                //GameManager.Instance.ScoreTitle.color = newColor;
+
                 isCheat = false;
                 Debug.Log("CheatOff!");
             }
             else
             {
                 // Cheat On
-                //GameManager.Instance.ScoreTitle.color = new Color(193, 193, 193, 255);
-                GameManager.Instance.ScoreTitle.color = new Vector4(193, 193, 193, 255);
+                newColor = new UnityEngine.Color(83f, 83f, 83f);
+                //GameManager.Instance.ScoreTitle.color = newColor;
+                //GameManager.Instance.ScoreTitle.color = new UnityEngine.Color(100, 0, 0, 255);
                 //GameManager.Instance.ScoreTitle.color = Color.blue;
                 isCheat = true;
                 Debug.Log("CheatOn!");
