@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
             if (isCheat) 
             {
                 // Cheat Off
-                newColor = new Color(0, 0, 0);
+                newColor = new Color(0.325f, 0.325f, 0.325f);
                 GameManager.Instance.ScoreTitle.color = newColor;
 
                 isCheat = false;
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             else
             {
                 // Cheat On
-                newColor = new Color(83f, 83f, 83f);
+                newColor = new Color(0.886f, 0.886f, 0.886f);
                 GameManager.Instance.ScoreTitle.color = newColor;
                 //GameManager.Instance.ScoreTitle.color = new UnityEngine.Color(100, 0, 0, 255);
                 //GameManager.Instance.ScoreTitle.color = Color.blue;

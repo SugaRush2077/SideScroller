@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b8435fafde063448e820e37ea1ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpawnTutor: 0
   tutorialSign: {fileID: 664300622624518442, guid: bbe46d09d8befe74f89975cc25364412, type: 3}
   objects:
   - prefab: {fileID: 7837702234615669553, guid: f4f77e7a343e30c43b8dd70f7253c01b, type: 3}
@@ -1132,6 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf44a4c6266450458ff358483b2fd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  am: {fileID: 84589731}
   FailureSound: {fileID: 8300000, guid: 80b8e0b3d9b3b8246823bb65df424fad, type: 3}
   initialGameSpeed: 4
   speedIncrease: 0.2
@@ -1175,7 +1177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.17
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0

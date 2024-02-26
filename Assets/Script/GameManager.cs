@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     // Only ONE GameManager
     public static GameManager Instance {  get; private set; }
-
+    public AudioManager am;
     // Player & Spawner
     private Player player;
     private Spawner obstacle_spawner;
@@ -288,7 +288,8 @@ public class GameManager : MonoBehaviour
             obstacle_spawner.gameObject.SetActive(false);
             bg.gameObject.SetActive(false);
             fg.gameObject.SetActive(false);
-
+            am.StopMusic();
+            
             gameSpeed = 0f;  // Stop the game
             //isDemo = false;
             isInGame = false;
