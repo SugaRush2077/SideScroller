@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     private CharacterController character;
-    
     private Vector3 direction;
+
+    // SoundEffect
+    public AudioClip JumpSound;
+    public AudioClip SlideSound;
+    
+    private AudioSource audioSource;
+
+    
 
     // Animation Sprite
     public Sprite[] Slide_sprite;
@@ -32,6 +36,7 @@ public class Player : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -55,13 +60,21 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
                 direction = Vector3.up * jumpForce;
+                audioSource.clip = JumpSound;
+                audioSource.Play();
             }
         }
 
         character.Move(direction * Time.deltaTime);
-
-        if (Input.GetButton("Crouch"))
+        if (Input.GetButtonDown("Crouch"))
         {
+            audioSource.clip = SlideSound;
+            audioSource.Play();
+        }
+
+            if (Input.GetButton("Crouch"))
+        {
+            
             isSlide = true;
             slide();
         }
@@ -81,12 +94,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            UnityEngine.Color newColor;
+            Color newColor;
             if (isCheat) 
             {
                 // Cheat Off
-                newColor = new UnityEngine.Color(0, 0, 0);
-                //GameManager.Instance.ScoreTitle.color = newColor;
+                newColor = new Color(0, 0, 0);
+                GameManager.Instance.ScoreTitle.color = newColor;
 
                 isCheat = false;
                 Debug.Log("CheatOff!");
@@ -94,8 +107,8 @@ public class Player : MonoBehaviour
             else
             {
                 // Cheat On
-                newColor = new UnityEngine.Color(83f, 83f, 83f);
-                //GameManager.Instance.ScoreTitle.color = newColor;
+                newColor = new Color(83f, 83f, 83f);
+                GameManager.Instance.ScoreTitle.color = newColor;
                 //GameManager.Instance.ScoreTitle.color = new UnityEngine.Color(100, 0, 0, 255);
                 //GameManager.Instance.ScoreTitle.color = Color.blue;
                 isCheat = true;
@@ -118,7 +131,9 @@ public class Player : MonoBehaviour
         {
             if (other.CompareTag("Obstacle") || other.CompareTag("Enemy"))
             {
+                
                 GameManager.Instance.GameOver();
+                
             }
         }
         

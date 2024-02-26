@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private Spawner obstacle_spawner;
     private BG_spawner bg;
     private FG_spawner fg;
+    public AudioClip FailureSound;
+    private AudioSource audioSource;
 
     // Game Settings
     // Speed
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+
         }
         else
         {
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
     // when start, find all objects
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = FindAnyObjectByType<Player>();
         obstacle_spawner = FindAnyObjectByType<Spawner>();
         bg = FindAnyObjectByType<BG_spawner>();
@@ -156,6 +160,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        audioSource.clip = FailureSound;
+        audioSource.Play();
+        
         enabled = false;
         GameMode(2);
         UpdateHighScore();
@@ -228,6 +235,8 @@ public class GameManager : MonoBehaviour
             bg.gameObject.SetActive(true);
             fg.gameObject.SetActive(true);
 
+            bg.startSpawn(1f);
+            audioSource.Stop();
             //isDemo = true;
             isInGame = false;
 
@@ -235,6 +244,7 @@ public class GameManager : MonoBehaviour
         else if (index == 1)
         {
             // UI
+            bg.gameObject.SetActive(false);
             Title.gameObject.SetActive(false);
             startButton.gameObject.SetActive(false);
             gameOverText.gameObject.SetActive(false);
@@ -252,7 +262,12 @@ public class GameManager : MonoBehaviour
             fg.gameObject.SetActive(true);
 
             //isDemo = false;
+            audioSource.Stop();
             isInGame = true;
+
+            obstacle_spawner.startSpawn(3f, 5f);
+            bg.spawnTutorialSign();
+            bg.startSpawn(3);
 
         }
         else if (index == 2)

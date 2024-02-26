@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BG_spawner : MonoBehaviour
 {
+    public bool isSpawnTutor = false;
+    public GameObject tutorialSign;
     [System.Serializable]
     public struct SpawnableObject
     {
@@ -25,11 +27,8 @@ public class BG_spawner : MonoBehaviour
       
     private void OnEnable()
     {
-        Invoke(nameof(Spawn), 1f);
         //Spawn();
         //InvokeRepeating(nameof(Spawn), 1, 0.7f);
-
-        
     }
 
     private void OnDisable()
@@ -47,9 +46,18 @@ public class BG_spawner : MonoBehaviour
         }
         
         count++;*/
-        
+    }
+    public void startSpawn(float n)
+    {
+        //Debug.Log(n);
+        Invoke(nameof(Spawn), n);
     }
 
+    public void spawnTutorialSign()
+    {
+        GameObject tutorial = Instantiate(tutorialSign);
+        tutorial.transform.position += transform.position;
+    }
 
     private void Spawn()
     {

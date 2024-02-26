@@ -65,10 +65,15 @@ public class Spawner : MonoBehaviour
     {
         
         //Invoke(nameof(calculateDistance), 0.1f);
-        Invoke(nameof(Spawn), Random.Range(3, spawnPeriod));
+        
         
     }
-     
+
+    public void startSpawn(float a, float b)
+    {
+        Invoke(nameof(Spawn), Random.Range(a, b));
+    }
+
     private void OnDisable()
     {
         CancelInvoke();
